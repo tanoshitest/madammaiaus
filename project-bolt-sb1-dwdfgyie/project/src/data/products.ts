@@ -58,7 +58,7 @@ export const products: Product[] = [
   },
   {
     id: '3',
-    name: 'Laksa Noodle Soup',
+    name: 'Laksa Noodle Soup (Mi Laksa)',
     slug: 'laksa',
     tagline: 'Awaken your senses with our Laksa, where the creamy, aromatic traditions of Southeast Asia come to life!',
     weight: '750g',
