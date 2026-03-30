@@ -37,8 +37,8 @@ export default function Footer() {
           <div>
             <h4 className="text-sm uppercase tracking-wider mb-4">Contact</h4>
             <div className="text-gray-400 text-sm space-y-2">
-              <p>335A Churchill Road</p>
-              <p>Kilburn, SA, 5084</p>
+              <p>56a Lara Way</p>
+              <p>Campbellfield VIC 3061, Australia</p>
               <p className="mt-4">Phone: 0450 218 007</p>
               <p>Email: info@madame-mai.com.au</p>
             </div>

@@ -24,9 +24,9 @@ export default function ContactPage() {
                 <div>
                   <h3 className="font-medium mb-1">Address</h3>
                   <p className="text-gray-600">
-                    335A Churchill Road
+                    56a Lara Way
                     <br />
-                    Kilburn, SA, 5084
+                    Campbellfield VIC 3061, Australia
                   </p>
                 </div>
               </div>
