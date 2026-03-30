@@ -18,6 +18,12 @@ export default function BlogPostPage() {
       image: 'linear-gradient(135deg, #ff6b35 0%, #f7931e 100%)',
       content: 'Laksa represents the beautiful fusion of Chinese and Malay cuisines...',
     },
+    'hu-tieu-secrets': {
+      title: 'Secrets of the Perfect Hu Tieu',
+      date: 'March 20, 2026',
+      image: 'linear-gradient(135deg, #4a7c59 0%, #6b9080 100%)',
+      content: 'Hu Tieu is more than just a noodle soup in Southern Vietnam—it is a symbol of versatility and the rich tapestry of flavors that define the Mekong Delta. Unlike the robust Pho of the North, Hu Tieu is known for its clear, delicate broth and the abundance of sweet pork and fresh seafood. The key to our Hu Tieu lies in the clarity of the broth, achieved by simmerng pork bones for hours with dried squid and special aromatic roots.',
+    },
   };
 
   const post = slug ? posts[slug] : null;

@@ -18,6 +18,14 @@ export default function BlogPage() {
       image: 'linear-gradient(135deg, #ff6b35 0%, #f7931e 100%)',
       date: 'March 10, 2026',
     },
+    {
+      id: '3',
+      slug: 'hu-tieu-secrets',
+      title: 'Secrets of the Perfect Hu Tieu',
+      excerpt: 'Exploring the delicate balance of flavors in Southern Vietnam\'s most beloved breakfast soup.',
+      image: 'linear-gradient(135deg, #4a7c59 0%, #6b9080 100%)',
+      date: 'March 20, 2026',
+    },
   ];
 
   return (
