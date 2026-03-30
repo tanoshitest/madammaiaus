@@ -259,7 +259,9 @@ export default function CartPage() {
                 <div
                   className="w-32 h-32 flex-shrink-0"
                   style={{
-                    background: item.product.image,
+                    backgroundImage: item.product.image.startsWith('linear-gradient') ? item.product.image : `url(${item.product.image})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
                   }}
                 />
 

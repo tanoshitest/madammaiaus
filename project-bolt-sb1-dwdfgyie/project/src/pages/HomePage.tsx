@@ -23,30 +23,25 @@ export default function HomePage() {
 
 function HeroSection() {
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      <div
-        className="absolute inset-0 bg-gradient-to-br from-amber-600 to-orange-700"
-        style={{
-          backgroundImage: 'linear-gradient(135deg, #d97706 0%, #ea580c 100%)',
-        }}
-      />
-      <div className="relative z-10 text-center text-white px-6 max-w-4xl mx-auto">
-        <p className="text-sm uppercase tracking-[0.3em] mb-6">
-          Handcrafted Frozen Soup Bowls
-        </p>
-        <h1
-          className="text-5xl md:text-7xl font-serif mb-8 leading-tight"
-          style={{ fontFamily: "'Playfair Display', serif" }}
-        >
-          Real Ingredients. Real Fast. Really Good.
-        </h1>
-        <Link
-          to="/our-products"
-          className="inline-block bg-white text-[#1a1a1a] px-8 py-4 text-sm uppercase tracking-wider hover:bg-gray-100 transition-colors"
-        >
-          Our Products
-        </Link>
-      </div>
+    <section className="relative h-[60vh] md:h-screen flex items-center justify-center overflow-hidden pt-12 mt-12 bg-white">
+      <Link 
+        to="/our-products" 
+        className="absolute inset-0 block w-full h-full group"
+      >
+        <div
+          className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-[1.02]"
+          style={{
+            backgroundImage: 'url(/banner.png)',
+            backgroundSize: 'contain',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center center'
+          }}
+        />
+        <div className="sr-only">
+          <h1>Madame Mai - Comfort in a Bowl, Ready in 10 Minutes</h1>
+          <p>Real Ingredients. Real Fast. Really Good. Snap, Heat, Eat!</p>
+        </div>
+      </Link>
     </section>
   );
 }
@@ -179,7 +174,7 @@ function SocialFeed() {
 
 function BlogSection() {
   const featuredPost = blogPosts[0];
-  const sidePosts = blogPosts.slice(1, 4);
+  const sidePosts = blogPosts.slice(1, 6);
 
   return (
     <section className="py-24 px-6 bg-[#f7f5f2]">
@@ -203,45 +198,47 @@ function BlogSection() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
           {/* Main Post */}
-          <div className="lg:col-span-2 group">
-            <Link to={`/blog/${featuredPost.slug}`} className="block">
+          <div className="lg:col-span-2">
+            <Link to={`/blog/${featuredPost.slug}`} className="group flex flex-col h-full">
               <div 
                 className="aspect-[16/9] mb-8 overflow-hidden"
                 style={{ background: featuredPost.image }}
               >
                 <div className="w-full h-full transition-transform duration-700 group-hover:scale-105" />
               </div>
-              <p className="text-xs uppercase tracking-wider text-gray-500 mb-4">{featuredPost.date}</p>
-              <h3 className="text-3xl font-serif mb-4 group-hover:opacity-70 transition-opacity">
-                {featuredPost.title}
-              </h3>
-              <p className="text-gray-600 leading-relaxed max-w-2xl mb-6">
-                {featuredPost.excerpt}
-              </p>
-              <span className="inline-block text-sm uppercase tracking-wider border-b-2 border-black pb-1">
+              <div className="flex-grow">
+                <p className="text-xs uppercase tracking-wider text-gray-500 mb-4">{featuredPost.date}</p>
+                <h3 className="text-3xl font-serif mb-4 group-hover:opacity-70 transition-opacity">
+                  {featuredPost.title}
+                </h3>
+                <p className="text-gray-600 leading-relaxed max-w-2xl mb-6">
+                  {featuredPost.excerpt}
+                </p>
+              </div>
+              <span className="inline-block text-sm uppercase tracking-wider border-b-2 border-black pb-1 self-start">
                 Read Full Story
               </span>
             </Link>
           </div>
-
+ 
           {/* Side Posts Stack */}
-          <div className="space-y-10">
+          <div className="flex flex-col justify-between space-y-8 lg:space-y-0 py-1">
             {sidePosts.map((post) => (
-              <Link key={post.id} to={`/blog/${post.slug}`} className="group flex gap-6 items-start">
+              <Link key={post.id} to={`/blog/${post.slug}`} className="group flex gap-4 items-start">
                 <div 
-                  className="w-24 h-24 flex-shrink-0 overflow-hidden"
+                  className="w-20 h-20 flex-shrink-0 overflow-hidden"
                   style={{ background: post.image }}
                 >
                    <div className="w-full h-full transition-transform duration-500 group-hover:scale-110" />
                 </div>
-                <div>
-                  <p className="text-[10px] uppercase tracking-widest text-gray-400 mb-2">{post.date}</p>
-                  <h4 className="text-lg font-medium leading-snug group-hover:opacity-70 transition-opacity">
+                <div className="flex-1 min-w-0">
+                  <p className="text-[9px] uppercase tracking-widest text-gray-400 mb-1.5">{post.date}</p>
+                  <h4 className="text-sm font-medium leading-tight group-hover:opacity-70 transition-opacity whitespace-normal line-clamp-2">
                     {post.title}
                   </h4>
-                  <span className="inline-block text-[10px] uppercase tracking-wider mt-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span className="inline-block text-[9px] uppercase tracking-widest mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
                     Read More +
                   </span>
                 </div>

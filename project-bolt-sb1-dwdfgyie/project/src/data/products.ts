@@ -9,13 +9,8 @@ export const products: Product[] = [
     weight: '750g',
     category: 'soups',
     price: 1495,
-    image: 'linear-gradient(135deg, #d4351c 0%, #e8744f 100%)',
-    images: [
-      'linear-gradient(135deg, #d4351c 0%, #e8744f 100%)',
-      'linear-gradient(135deg, #e8744f 0%, #f0a38e 100%)',
-      'linear-gradient(135deg, #f0a38e 0%, #f7d1c6 100%)',
-      'linear-gradient(135deg, #d4351c 0%, #8b2312 100%)'
-    ],
+    image: '/3.jpg',
+    images: ['/3.jpg'],
     description: 'Our Bun Bo Hue is a bold and spicy Vietnamese noodle soup that captures the essence of central Vietnam. Rich, aromatic, and deeply satisfying, this authentic recipe combines tender beef, rice noodles, and a complex broth infused with lemongrass and chili.',
     ingredients: [
       'Beef broth',
@@ -42,13 +37,8 @@ export const products: Product[] = [
     weight: '750g',
     category: 'soups',
     price: 1495,
-    image: 'linear-gradient(135deg, #8b4513 0%, #a0522d 100%)',
-    images: [
-      'linear-gradient(135deg, #8b4513 0%, #a0522d 100%)',
-      'linear-gradient(135deg, #a0522d 0%, #c08552 100%)',
-      'linear-gradient(135deg, #c08552 0%, #d4a373 100%)',
-      'linear-gradient(135deg, #8b4513 0%, #5d2e0d 100%)'
-    ],
+    image: '/4.jpg',
+    images: ['/4.jpg', '/1.jpg'],
     description: 'Experience the iconic flavors of Vietnam with our traditional Pho Bo. This beloved beef noodle soup features a fragrant broth simmered for hours with aromatic spices, tender beef slices, and silky rice noodles.',
     ingredients: [
       'Beef bone broth',
@@ -76,13 +66,8 @@ export const products: Product[] = [
     weight: '750g',
     category: 'soups',
     price: 1495,
-    image: 'linear-gradient(135deg, #ff6b35 0%, #f7931e 100%)',
-    images: [
-      'linear-gradient(135deg, #ff6b35 0%, #f7931e 100%)',
-      'linear-gradient(135deg, #f7931e 0%, #fbaf5d 100%)',
-      'linear-gradient(135deg, #fbaf5d 0%, #fcd7a1 100%)',
-      'linear-gradient(135deg, #ff6b35 0%, #cc552b 100%)'
-    ],
+    image: '/2.jpg',
+    images: ['/2.jpg'],
     description: 'Our Laksa is a rich and creamy coconut-based noodle soup that brings together the best of Southeast Asian flavors. This aromatic bowl features a perfect balance of spicy, sweet, and savory notes.',
     ingredients: [
       'Coconut milk',
@@ -109,13 +94,8 @@ export const products: Product[] = [
     weight: '750g',
     category: 'soups',
     price: 1495,
-    image: 'linear-gradient(135deg, #4a7c59 0%, #6b9080 100%)',
-    images: [
-      'linear-gradient(135deg, #4a7c59 0%, #6b9080 100%)',
-      'linear-gradient(135deg, #6b9080 0%, #90a49c 100%)',
-      'linear-gradient(135deg, #90a49c 0%, #b5c4bf 100%)',
-      'linear-gradient(135deg, #4a7c59 0%, #35583f 100%)'
-    ],
+    image: '/1.jpg',
+    images: ['/1.jpg'],
     description: 'Hu Tieu is a beloved Southern Vietnamese noodle soup known for its light yet flavorful clear broth. Featuring succulent pork and sweet prawns, this comforting bowl offers a delicate balance of textures and tastes.',
     ingredients: [
       'Pork bone broth',

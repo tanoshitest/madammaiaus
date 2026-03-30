@@ -57,7 +57,11 @@ export default function ProductDetailPage() {
             <div
               className="aspect-square w-full transition-all duration-500"
               style={{
-                background: selectedImage || product.image,
+                backgroundImage: (selectedImage || product.image).startsWith('linear-gradient') 
+                  ? (selectedImage || product.image) 
+                  : `url(${selectedImage || product.image})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
               }}
             />
             {product.images && product.images.length > 0 && (
@@ -71,7 +75,11 @@ export default function ProductDetailPage() {
                         ? 'border-[#1a1a1a] opacity-100' 
                         : 'border-transparent opacity-50 hover:opacity-80'
                     }`}
-                    style={{ background: img }}
+                    style={{ 
+                      backgroundImage: img.startsWith('linear-gradient') ? img : `url(${img})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center'
+                    }}
                   />
                 ))}
               </div>
