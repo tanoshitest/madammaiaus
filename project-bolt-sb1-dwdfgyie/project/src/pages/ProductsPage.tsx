@@ -1,7 +1,11 @@
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import { products } from '../data/products';
+import ProductCard from '../components/ProductCard';
+import Toast from '../components/Toast';
 
 export default function ProductsPage() {
+  const [showToast, setShowToast] = useState(false);
+
   return (
     <div className="min-h-screen bg-white pt-24">
       <div className="max-w-7xl mx-auto px-6 py-16">
@@ -17,30 +21,22 @@ export default function ProductsPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
           {products.map((product) => (
-            <div key={product.id} className="group">
-              <Link to={`/our-products/${product.slug}`}>
-                <div
-                  className="aspect-square mb-6 overflow-hidden transition-transform duration-300 group-hover:scale-105"
-                  style={{
-                    background: product.image,
-                  }}
-                />
-                <h2 className="text-xl font-medium mb-3 leading-tight">
-                  {product.name}
-                </h2>
-                <p className="text-gray-600 text-sm mb-4 leading-relaxed">
-                  {product.tagline}
-                </p>
-                <span className="inline-block text-sm uppercase tracking-wider border-b-2 border-[#1a1a1a] pb-1 group-hover:opacity-60 transition-opacity">
-                  Discover More
-                </span>
-              </Link>
-            </div>
+            <ProductCard 
+              key={product.id} 
+              product={product} 
+              onAdd={() => setShowToast(true)} 
+            />
           ))}
         </div>
       </div>
+
+      <Toast
+        message="Added to cart!"
+        show={showToast}
+        onClose={() => setShowToast(false)}
+      />
     </div>
   );
 }

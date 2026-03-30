@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Plus, Minus } from 'lucide-react';
 import { products } from '../data/products';
 import { useCart } from '../contexts/CartContext';
 import { formatPrice } from '../utils/format';
@@ -11,6 +11,7 @@ export default function ProductDetailPage() {
   const navigate = useNavigate();
   const { addToCart } = useCart();
   const [showToast, setShowToast] = useState(false);
+  const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState<'description' | 'ingredients' | 'preparation'>('description');
 
   const product = products.find((p) => p.slug === slug);
@@ -30,7 +31,7 @@ export default function ProductDetailPage() {
   }
 
   const handleAddToCart = () => {
-    addToCart(product);
+    addToCart(product, quantity);
     setShowToast(true);
   };
 
@@ -99,9 +100,31 @@ export default function ProductDetailPage() {
               </div>
             </div>
 
+            {/* Quantity Selector */}
+            <div className="flex items-center mb-8">
+              <span className="text-sm uppercase tracking-wider mr-6">Quantity</span>
+              <div className="flex items-center border border-gray-200 rounded-sm">
+                <button
+                  onClick={() => setQuantity(prev => Math.max(1, prev - 1))}
+                  className="px-4 py-3 text-gray-500 hover:text-black transition-colors border-r border-gray-100"
+                >
+                  <Minus className="w-4 h-4" />
+                </button>
+                <span className="w-12 text-center font-medium">
+                  {quantity}
+                </span>
+                <button
+                  onClick={() => setQuantity(prev => prev + 1)}
+                  className="px-4 py-3 text-gray-500 hover:text-black transition-colors border-l border-gray-100"
+                >
+                  <Plus className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+
             <button
               onClick={handleAddToCart}
-              className="w-full bg-[#1a1a1a] text-white py-4 text-sm uppercase tracking-wider hover:bg-gray-800 transition-colors mb-10"
+              className="w-full bg-[#1a1a1a] text-white py-5 text-sm uppercase tracking-wider hover:bg-gray-800 transition-colors mb-10 font-medium"
             >
               Add to Cart
             </button>

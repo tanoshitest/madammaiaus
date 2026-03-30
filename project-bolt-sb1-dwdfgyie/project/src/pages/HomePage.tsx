@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Instagram, Facebook, Plus, ArrowRight } from 'lucide-react';
+import { Instagram, Facebook, ArrowRight } from 'lucide-react';
 import Marquee from '../components/Marquee';
 import Toast from '../components/Toast';
+import ProductCard from '../components/ProductCard';
 import { products } from '../data/products';
 import { blogPosts } from '../data/blogPosts';
-import { useCart } from '../contexts/CartContext';
 
 export default function HomePage() {
   return (
@@ -52,13 +52,7 @@ function HeroSection() {
 }
 
 function ProductShowcase() {
-  const { addToCart } = useCart();
   const [showToast, setShowToast] = useState(false);
-
-  const handleAddToCart = (product: typeof products[0]) => {
-    addToCart(product);
-    setShowToast(true);
-  };
 
   return (
     <section className="py-24 px-6 relative">
@@ -71,38 +65,11 @@ function ProductShowcase() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
           {products.map((product) => (
-            <div key={product.id} className="flex flex-col h-full group">
-              <Link to={`/our-products/${product.slug}`} className="block mb-6 overflow-hidden">
-                <div
-                  className="aspect-square transition-transform duration-500 group-hover:scale-105"
-                  style={{
-                    background: product.image,
-                  }}
-                />
-              </Link>
-              
-              <div className="flex flex-col flex-grow">
-                <Link to={`/our-products/${product.slug}`}>
-                  <h3 className="text-xl font-medium mb-3 leading-tight min-h-[3.5rem] line-clamp-2 hover:opacity-60 transition-opacity">
-                    {product.name}
-                  </h3>
-                </Link>
-                
-                <p className="text-gray-600 text-sm mb-6 leading-relaxed flex-grow">
-                  {product.tagline}
-                </p>
-
-                <button
-                  onClick={() => handleAddToCart(product)}
-                  className="inline-flex items-center justify-between w-full bg-[#1a1a1a] text-white px-6 py-4 text-xs uppercase tracking-widest hover:bg-gray-800 transition-all duration-300 group/btn mt-auto"
-                >
-                  <span className="font-medium">Shop now</span>
-                  <div className="bg-white/10 p-1 rounded-full group-hover/btn:bg-white/20 transition-colors">
-                    <Plus className="w-4 h-4" />
-                  </div>
-                </button>
-              </div>
-            </div>
+            <ProductCard 
+              key={product.id} 
+              product={product} 
+              onAdd={() => setShowToast(true)} 
+            />
           ))}
         </div>
       </div>

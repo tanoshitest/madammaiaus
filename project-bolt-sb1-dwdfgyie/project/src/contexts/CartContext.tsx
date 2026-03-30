@@ -7,14 +7,14 @@ interface CartState {
 }
 
 type CartAction =
-  | { type: 'ADD_TO_CART'; product: Product }
+  | { type: 'ADD_TO_CART'; product: Product; quantity: number }
   | { type: 'REMOVE_FROM_CART'; productId: string }
   | { type: 'UPDATE_QUANTITY'; productId: string; quantity: number }
   | { type: 'CLEAR_CART' }
   | { type: 'LOAD_CART'; items: CartItem[] };
 
 interface CartContextType extends CartState {
-  addToCart: (product: Product) => void;
+  addToCart: (product: Product, quantity?: number) => void;
   removeFromCart: (productId: string) => void;
   updateQuantity: (productId: string, quantity: number) => void;
   clearCart: () => void;
@@ -38,11 +38,11 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
       if (existingItemIndex > -1) {
         newItems = state.items.map((item, index) =>
           index === existingItemIndex
-            ? { ...item, quantity: item.quantity + 1 }
+            ? { ...item, quantity: item.quantity + action.quantity }
             : item
         );
       } else {
-        newItems = [...state.items, { product: action.product, quantity: 1 }];
+        newItems = [...state.items, { product: action.product, quantity: action.quantity }];
       }
 
       return {
@@ -109,8 +109,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
     localStorage.setItem('madame-mai-cart', JSON.stringify(state.items));
   }, [state.items]);
 
-  const addToCart = (product: Product) => {
-    dispatch({ type: 'ADD_TO_CART', product });
+  const addToCart = (product: Product, quantity: number = 1) => {
+    dispatch({ type: 'ADD_TO_CART', product, quantity });
   };
 
   const removeFromCart = (productId: string) => {
