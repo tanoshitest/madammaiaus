@@ -13,12 +13,16 @@ type CartAction =
   | { type: 'CLEAR_CART' }
   | { type: 'LOAD_CART'; items: CartItem[] };
 
+const FREE_SHIPPING_THRESHOLD = 80;
+
 interface CartContextType extends CartState {
   addToCart: (product: Product, quantity?: number) => void;
   removeFromCart: (productId: string) => void;
   updateQuantity: (productId: string, quantity: number) => void;
   clearCart: () => void;
   itemCount: number;
+  freeShippingThreshold: number;
+  remainingForFreeShipping: number;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -126,6 +130,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   };
 
   const itemCount = state.items.reduce((sum, item) => sum + item.quantity, 0);
+  const remainingForFreeShipping = Math.max(0, FREE_SHIPPING_THRESHOLD - state.total / 100);
 
   return (
     <CartContext.Provider
@@ -137,6 +142,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
         updateQuantity,
         clearCart,
         itemCount,
+        freeShippingThreshold: FREE_SHIPPING_THRESHOLD,
+        remainingForFreeShipping,
       }}
     >
       {children}

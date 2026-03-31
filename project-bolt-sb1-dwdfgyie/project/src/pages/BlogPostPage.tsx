@@ -1,16 +1,15 @@
-import { useParams, Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
+import { useParams, Link } from 'react-router-dom';
 import { blogPosts } from '../data/blogPosts';
+import Breadcrumbs from '../components/Breadcrumbs';
 
 export default function BlogPostPage() {
   const { slug } = useParams();
-  const navigate = useNavigate();
 
   const post = blogPosts.find(p => p.slug === slug);
 
   if (!post) {
     return (
-      <div className="min-h-screen bg-white pt-24 flex items-center justify-center">
+      <div className="min-h-screen bg-white pt-32 flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl mb-4">Post not found</h1>
           <Link to="/blog" className="text-sm uppercase tracking-wider underline">
@@ -22,15 +21,12 @@ export default function BlogPostPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white pt-24">
+    <div className="min-h-screen bg-white pt-32">
       <article className="max-w-4xl mx-auto px-6 py-16">
-        <button
-          onClick={() => navigate(-1)}
-          className="flex items-center space-x-2 text-sm uppercase tracking-wider mb-12 hover:opacity-60 transition-opacity"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Back</span>
-        </button>
+        <Breadcrumbs items={[
+          { name: 'Blog', path: '/blog' },
+          { name: post.title }
+        ]} />
 
         <p className="text-xs uppercase tracking-wider text-gray-500 mb-4">
           {post.date}

@@ -11,10 +11,81 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-white">
       <HeroSection />
-      <Marquee text="Snap • Heat • Eat" variant="dark" />
+      <div className="bg-[#1a1a1a] py-6 overflow-hidden">
+        <Marquee text="Snap • Heat • Eat" variant="dark" />
+      </div>
       <ProductShowcase />
+      
+      {/* Made in SA Badge Section */}
+      <section className="py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-6 flex justify-center">
+          <div className="flex items-center space-x-6 border-y border-gray-100 py-8 px-12 group hover:border-black transition-colors duration-500">
+            <div className="w-20 h-20 bg-[#f7f5f2] rounded-full flex items-center justify-center p-3">
+              <img 
+                src="/logo.png" 
+                alt="South Australian Made Badge - Supporting Local Adelaide Businesses" 
+                className="w-full h-auto brightness-0 opacity-80 group-hover:opacity-100 transition-opacity"
+              />
+            </div>
+            <div>
+              <h3 className="text-sm uppercase tracking-[0.3em] font-bold mb-1">Proudly South Australian</h3>
+              <p className="text-gray-500 text-xs uppercase tracking-widest">Handcrafted in Adelaide since 2021</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <ValuePropositions />
-      <Marquee text="Comfort in a Bowl, Ready in 10 Mins" variant="light" />
+      
+      {/* Testimonials Section */}
+      <section className="py-24 bg-white px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-sm uppercase tracking-[0.3em] mb-4">Our Community</p>
+            <h2 className="text-4xl md:text-5xl font-serif" style={{ fontFamily: "'Playfair Display', serif" }}>
+              What You're Saying
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {[
+              {
+                name: 'A Zhu',
+                role: 'Verified Customer',
+                quote: 'The Phở Bò is a game-changer. The broth has that deep, authentic flavor I thought I could only get in a restaurant. It truly is comfort in a bowl.',
+              },
+              {
+                name: 'C Le',
+                role: 'Verified Customer',
+                quote: 'Perfect for busy weekdays. I love how I can have a high-quality Bún Bò Huế ready in just 10 minutes. The quality of ingredients is outstanding.',
+              },
+              {
+                name: 'D Romeo',
+                role: 'Verified Customer',
+                quote: 'Finally, a frozen meal that actually tastes fresh! The Laksa is incredibly aromatic and creamy. Madame Mai has become a staple in our household.',
+              },
+            ].map((testimonial, i) => (
+              <div key={i} className="bg-[#f7f5f2] p-10 flex flex-col justify-between group hover:bg-white transition-all duration-500 border border-transparent hover:border-gray-100 shadow-sm hover:shadow-xl">
+                <div>
+                  <div className="flex text-black mb-6">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className="text-lg">★</span>
+                    ))}
+                  </div>
+                  <p className="text-gray-700 leading-relaxed italic mb-8">"{testimonial.quote}"</p>
+                </div>
+                <div>
+                  <p className="font-bold uppercase tracking-widest text-xs mb-1">{testimonial.name}</p>
+                  <p className="text-[10px] text-gray-400 uppercase tracking-widest">{testimonial.role}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <div className="bg-[#f7f5f2] py-6 overflow-hidden border-y border-gray-100">
+        <Marquee text="Comfort in a Bowl, Ready in 10 Mins" variant="light" />
+      </div>
       <SocialFeed />
       <BlogSection />
     </div>
@@ -33,10 +104,11 @@ function HeroSection() {
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center center'
           }}
+          aria-label="Madame Mai Banner - Authentic Vietnamese Frozen Soup Bowls Background"
         />
         <div className="sr-only">
           <h1>Madame Mai - Comfort in a Bowl, Ready in 10 Minutes</h1>
-          <p>Real Ingredients. Real Fast. Really Good. Snap, Heat, Eat!</p>
+          <p>Real Ingredients. Real Fast. Really Good. Snap, Heat, Eat! Handcrafted in Adelaide, South Australia.</p>
         </div>
       </div>
       

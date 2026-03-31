@@ -2,13 +2,15 @@ import { useState } from 'react';
 import { products } from '../data/products';
 import ProductCard from '../components/ProductCard';
 import Toast from '../components/Toast';
+import Breadcrumbs from '../components/Breadcrumbs';
 
 export default function ProductsPage() {
   const [showToast, setShowToast] = useState(false);
 
   return (
-    <div className="min-h-screen bg-white pt-24">
+    <div className="min-h-screen bg-white pt-32">
       <div className="max-w-7xl mx-auto px-6 py-16">
+        <Breadcrumbs />
         <div className="text-center mb-16">
           <h1
             className="text-5xl md:text-6xl font-serif mb-6"

@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import { Trash2, Plus, Minus, CheckCircle, CreditCard, ChevronLeft } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 import { formatPrice } from '../utils/format';
+import FreeShippingProgress from '../components/FreeShippingProgress';
+import ProductCard from '../components/ProductCard';
+import { products } from '../data/products';
 
 type CheckoutStep = 'cart' | 'checkout' | 'success';
 
@@ -240,7 +243,7 @@ export default function CartPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white pt-24">
+    <div className="min-h-screen bg-white pt-32">
       <div className="max-w-7xl mx-auto px-6 py-16">
         <h1
           className="text-4xl md:text-5xl font-serif mb-12"
@@ -251,6 +254,7 @@ export default function CartPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           <div className="lg:col-span-2">
+            <FreeShippingProgress />
             {items.map((item) => (
               <div
                 key={item.product.id}
@@ -357,6 +361,21 @@ export default function CartPage() {
                 Continue Shopping
               </Link>
             </div>
+          </div>
+        </div>
+
+        {/* Cross-sell Section */}
+        <div className="mt-24 pt-24 border-t border-gray-100">
+          <h2 className="text-3xl font-serif mb-12 text-center" style={{ fontFamily: "'Playfair Display', serif" }}>
+            Frequently Bought Together
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {products
+              .filter(p => !items.find(item => item.product.id === p.id))
+              .slice(0, 4)
+              .map(product => (
+                <ProductCard key={product.id} product={product} />
+              ))}
           </div>
         </div>
       </div>

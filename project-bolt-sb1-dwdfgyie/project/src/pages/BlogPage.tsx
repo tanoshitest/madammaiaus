@@ -1,12 +1,14 @@
 import { Link } from 'react-router-dom';
 import { blogPosts } from '../data/blogPosts';
+import Breadcrumbs from '../components/Breadcrumbs';
 
 export default function BlogPage() {
   const posts = blogPosts;
 
   return (
-    <div className="min-h-screen bg-white pt-24">
+    <div className="min-h-screen bg-white pt-32">
       <div className="max-w-7xl mx-auto px-6 py-16">
+        <Breadcrumbs />
         <h1
           className="text-5xl md:text-6xl font-serif mb-8 text-center"
           style={{ fontFamily: "'Playfair Display', serif" }}

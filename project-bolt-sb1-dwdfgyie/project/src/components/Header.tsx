@@ -5,12 +5,22 @@ import { useCart } from '../contexts/CartContext';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const { itemCount } = useCart();
   const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [location]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navLinks = [
     { name: 'Home', path: '/' },
@@ -23,7 +33,11 @@ export default function Header() {
   return (
     <>
       <header
-        className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-50 h-12 flex items-center"
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 h-24 flex items-center ${
+          isHomePage && !isScrolled
+            ? 'bg-transparent border-transparent'
+            : 'bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100'
+        }`}
       >
         <div className="max-w-7xl mx-auto px-6 w-full">
           <div className="flex items-center justify-between">

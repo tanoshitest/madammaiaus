@@ -5,6 +5,9 @@ import { products } from '../data/products';
 import { useCart } from '../contexts/CartContext';
 import { formatPrice } from '../utils/format';
 import Toast from '../components/Toast';
+import Breadcrumbs from '../components/Breadcrumbs';
+import ProductCard from '../components/ProductCard';
+import FreeShippingProgress from '../components/FreeShippingProgress';
 
 export default function ProductDetailPage() {
   const { slug } = useParams();
@@ -42,8 +45,12 @@ export default function ProductDetailPage() {
   ] as const;
 
   return (
-    <div className="min-h-screen bg-white pt-24">
+    <div className="min-h-screen bg-white pt-32">
       <div className="max-w-7xl mx-auto px-6 py-16">
+        <Breadcrumbs items={[
+          { name: 'Our Products', path: '/our-products' },
+          { name: product.name.split(' (')[0] }
+        ]} />
         <button
           onClick={() => navigate(-1)}
           className="flex items-center space-x-2 text-sm uppercase tracking-wider mb-12 hover:opacity-60 transition-opacity"
@@ -186,6 +193,28 @@ export default function ProductDetailPage() {
                 )}
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Free Shipping Message */}
+        <div className="mt-16 bg-[#f7f5f2] p-8 text-center">
+          <div className="max-w-2xl mx-auto">
+            <FreeShippingProgress />
+          </div>
+        </div>
+
+        {/* Related Products Section */}
+        <div className="mt-24 pt-24 border-t border-gray-100">
+          <h2 className="text-3xl font-serif mb-12 text-center" style={{ fontFamily: "'Playfair Display', serif" }}>
+            You May Also Like
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {products
+              .filter(p => p.id !== product.id)
+              .slice(0, 4)
+              .map(relatedProduct => (
+                <ProductCard key={relatedProduct.id} product={relatedProduct} />
+              ))}
           </div>
         </div>
       </div>
